@@ -3,10 +3,14 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import logo from '../assets/img/crown.svg';
 import { UserContext } from '../contexts/UserContext';
 import { signOutUser } from '../utils/firebase/firebase.utils';
+import CartIcon from './cart/CartIcon';
+import CartDropdown from './cart/CartDropdown';
+import { CartToggleContext } from '../contexts/CartOpenContext';
 
 const Header = () => {
   const location = useLocation();
   const { currentUser } = useContext(UserContext);
+  const { toggler } = useContext(CartToggleContext);
 
   return (
     <>
@@ -46,7 +50,11 @@ const Header = () => {
                   </Link>
                 </li>
               )}
+              <li className="header-menu-item">
+                <CartIcon />
+              </li>
             </ul>
+            {toggler && <CartDropdown />}
           </nav>
         </div>
       </header>

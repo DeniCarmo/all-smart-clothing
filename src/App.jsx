@@ -6,6 +6,7 @@ import Shop from './routes/Shop';
 import Header from './components/Header';
 import SignIn from './components/SignIn';
 import Authentication from './components/Authentication';
+import Checkout from './routes/Checkout';
 
 const changeTitle = () => {
   document.title = 'All Smart Clothing';
@@ -22,6 +23,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="shop" element={<Shop />} />
         <Route path="auth" element={<Authentication />} />
+        <Route path="checkout" element={<Checkout />} />
       </Route>
     </Routes>
   );
