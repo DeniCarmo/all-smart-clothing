@@ -1,0 +1,13 @@
+.category-listing {
+  .category-listing {
+    &-title {
+      font-family: $fontFamily;
+      font-size: 28px;
+      line-height: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+}

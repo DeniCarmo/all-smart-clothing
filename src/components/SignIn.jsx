@@ -1,10 +1,17 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from '../utils/firebase/firebase.utils';
 import Button from './Button';
+
+import {
+  FormContainer,
+  FormInput,
+  FormInputGroup,
+  FormLabel,
+  FormButtons,
+} from '../styles/formStyles';
 
 const SignIn = () => {
   const [form, setForm] = useState({
@@ -48,51 +55,37 @@ const SignIn = () => {
   };
 
   return (
-    <section className="signIn">
+    <FormContainer>
       <h2>Sign In</h2>
 
-      <div className="signIn-input-group">
-        <input
-          type="email"
-          className="signIn-input"
-          name="email"
-          value={email}
-          onChange={handleForm}
-          required
-        />
-        <label
-          htmlFor="email"
-          className={`signIn-label${email.length ? ' signIn-label--shrink' : ''}`}
-        >
+      <FormInputGroup>
+        <FormInput type="email" name="email" value={email} onChange={handleForm} required />
+        <FormLabel htmlFor="email" shrink={email.length}>
           Email
-        </label>
-      </div>
+        </FormLabel>
+      </FormInputGroup>
 
-      <div className="signIn-input-group">
-        <input
+      <FormInputGroup>
+        <FormInput
           type="password"
-          className="signIn-input"
           name="password"
           value={password}
           onChange={handleForm}
           required
         />
-        <label
-          htmlFor="password"
-          className={`signIn-label${password.length ? ' signIn-label--shrink' : ''}`}
-        >
+        <FormLabel htmlFor="password" shrink={password.length}>
           Password
-        </label>
-      </div>
+        </FormLabel>
+      </FormInputGroup>
 
-      <div className="signIn-buttons">
+      <FormButtons>
         <Button onClick={handleSignIn}>Sign In</Button>
 
         <Button buttonType="google" onClick={signInWithGoogle}>
           Google Auth
         </Button>
-      </div>
-    </section>
+      </FormButtons>
+    </FormContainer>
   );
 };
 export default SignIn;

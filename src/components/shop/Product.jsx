@@ -12,7 +12,7 @@ function Product({ product }) {
       <img src={product.imageUrl} alt={product.name} className="product-img" />
       <div className="product-details">
         <span className="product-details-name">{product.name}</span>
-        <span className="product-details-price">${product.price.toFixed(2)}</span>
+        <span className="product-details-price">${product.price && product.price.toFixed(2)}</span>
       </div>
       <Button buttonType="inverted" onClick={addProdtoCart}>
         Add to Cart

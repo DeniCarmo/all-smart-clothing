@@ -1,13 +1,14 @@
 import React from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import { AuthenticationContainer } from '../styles/authentication';
 
 const Authentication = (props) => {
   return (
-    <div className="authentication container">
+    <AuthenticationContainer className="container">
       <SignIn />
       <SignUp />
-    </div>
+    </AuthenticationContainer>
   );
 };
 export default Authentication;

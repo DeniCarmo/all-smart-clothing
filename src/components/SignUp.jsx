@@ -1,10 +1,16 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from '../utils/firebase/firebase.utils';
-import classNames from 'classnames';
 import Button from './Button';
+import {
+  FormContainer,
+  FormInput,
+  FormInputGroup,
+  FormLabel,
+  ConfirmText,
+} from '../styles/formStyles';
 
 const SignUp = (props) => {
   const [form, setForm] = useState({
@@ -15,10 +21,6 @@ const SignUp = (props) => {
   });
 
   const { email, displayName, password, passwordConfirm } = form;
-
-  const passAlert = classNames('signUp-pass-confirm', {
-    'signUp-pass-confirm--alert': password !== passwordConfirm,
-  });
 
   const handleSubmit = async () => {
     if (password !== passwordConfirm) return;
@@ -50,82 +52,60 @@ const SignUp = (props) => {
   };
 
   return (
-    <section className="signUp">
+    <FormContainer>
       <h2 className="signUp-title">Don't have an account?</h2>
       <span className="signUp-subtitle">Sign up with your email and passwod</span>
 
-      <div className="signUp-input-group">
-        <input
+      <FormInputGroup>
+        <FormInput
           type="text"
-          className="signUp-input"
           name="displayName"
           value={displayName}
           onChange={handleForm}
           required
         />
-        <label
-          htmlFor="displayName"
-          className={`signUp-label${displayName.length ? ' signUp-label--shrink' : ''}`}
-        >
+        <FormLabel htmlFor="displayName" shrink={displayName.length}>
           Display Name
-        </label>
-      </div>
+        </FormLabel>
+      </FormInputGroup>
 
-      <div className="signUp-input-group">
-        <input
-          type="email"
-          className="signUp-input"
-          name="email"
-          value={email}
-          onChange={handleForm}
-          required
-        />
-        <label
-          htmlFor="email"
-          className={`signUp-label${email.length ? ' signUp-label--shrink' : ''}`}
-        >
+      <FormInputGroup>
+        <FormInput type="email" name="email" value={email} onChange={handleForm} required />
+        <FormLabel htmlFor="email" shrink={email.length}>
           Email
-        </label>
-      </div>
+        </FormLabel>
+      </FormInputGroup>
 
-      <div className="signUp-input-group">
-        <input
+      <FormInputGroup>
+        <FormInput
           type="password"
-          className="signUp-input"
           name="password"
           value={password}
           onChange={handleForm}
           required
         />
-        <label
-          htmlFor="password"
-          className={`signUp-label${password.length ? ' signUp-label--shrink' : ''}`}
-        >
+        <FormLabel htmlFor="password" shrink={password.length}>
           Password
-        </label>
-      </div>
+        </FormLabel>
+      </FormInputGroup>
 
-      <div className="signUp-input-group">
-        <input
+      <FormInputGroup>
+        <FormInput
           type="password"
-          className="signUp-input"
           name="passwordConfirm"
           value={passwordConfirm}
           onChange={handleForm}
           required
         />
-        <label
-          htmlFor="passwordConfirm"
-          className={`signUp-label${passwordConfirm.length ? ' signUp-label--shrink' : ''}`}
-        >
+        <FormLabel htmlFor="passwordConfirm" shrink={passwordConfirm.length}>
           Confirm Password
-        </label>
-      </div>
+        </FormLabel>
+      </FormInputGroup>
 
-      <p className={passAlert}>Passwords must match</p>
+      <ConfirmText confirm={password !== passwordConfirm ? 1 : 0}>Passwords must match</ConfirmText>
 
       <Button onClick={handleSubmit}>Send</Button>
-    </section>
+    </FormContainer>
   );
 };
 export default SignUp;

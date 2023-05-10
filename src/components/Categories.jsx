@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Category from './Category';
+import { CategoriesContainer } from '../styles/categories';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -16,13 +17,13 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="categories container">
+    <CategoriesContainer className="container">
       {categories
         ? categories.map(({ title, imageUrl, id }, i) => {
             return <Category title={title} imageUrl={imageUrl} position={i} key={id} />;
           })
         : null}
-    </div>
+    </CategoriesContainer>
   );
 };
 export default Categories;

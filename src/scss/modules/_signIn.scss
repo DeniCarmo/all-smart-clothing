@@ -8,17 +8,6 @@
   text-align: left;
 
   .signIn {
-    &-pass-confirm {
-      font-size: 14px;
-      line-height: 14px;
-      font-weight: 600;
-      transition: all 0.2s ease-in-out;
-
-      &--alert {
-        color: red;
-      }
-    }
-
     &-input {
       background: none;
       background-color: white;

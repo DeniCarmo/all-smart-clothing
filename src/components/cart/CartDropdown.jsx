@@ -2,7 +2,8 @@ import { useContext } from 'react';
 import Button from '../Button';
 import CartItem from './CartItem';
 import { CartToggleContext } from '../../contexts/CartOpenContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { CartDropDown, CartDropDownItems, EmptyCartMessage } from '../../styles/cartDropDown';
 
 const CartDropdown = (props) => {
   const { cartItems, cartCount } = useContext(CartToggleContext);
@@ -13,8 +14,8 @@ const CartDropdown = (props) => {
   };
 
   return (
-    <div className="cart">
-      <div className="cart-items">
+    <CartDropDown>
+      <CartDropDownItems>
         {cartCount > 0 ? (
           cartItems.map(({ name, imageUrl, price, amount, id }) => {
             return (
@@ -22,11 +23,11 @@ const CartDropdown = (props) => {
             );
           })
         ) : (
-          <p className="cart-empty-message">Your cart is empty</p>
+          <EmptyCartMessage className="cart-empty-message">Your cart is empty</EmptyCartMessage>
         )}
-      </div>
+      </CartDropDownItems>
       <Button onClick={() => navigateHandler('/checkout')}>Go to Checkout</Button>
-    </div>
+    </CartDropDown>
   );
 };
 export default CartDropdown;
